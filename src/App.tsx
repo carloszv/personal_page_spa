@@ -1,28 +1,31 @@
+/* eslint-disable import/export */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import React from 'react'
-import logo from './logo.svg'
-import './App.css'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
-function App() {
+import PageLayout from 'components/foundations/PageLayout/PageLayout'
+import Home from 'pages/Home'
+import Login from 'pages/Login'
+
+import 'bootstrap/dist/css/bootstrap.min.css'
+
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <PageLayout>
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route exact path="/login">
+            <Login />
+          </Route>
+          <Route path="*">
+            <span>Page not found</span>
+          </Route>
+        </Switch>
+      </Router>
+    </PageLayout>
   )
 }
-
-export default App
